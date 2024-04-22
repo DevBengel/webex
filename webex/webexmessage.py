@@ -28,6 +28,23 @@ def send_message(email,text):
 
     return(response.text)
 
+def send_message_to_roomid(roomid,text):
+
+    url = "https://webexapis.com/v1/messages"
+
+    payload = json.dumps({
+    "RoomId": roomid,
+    "text": text
+    })
+    headers = {
+    'Authorization': 'Bearer ' + str(os.getenv('ACCESSTOKEN')),
+    'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    return(response.text)
+
 def get_Message(messageID):
     #print ('Searching for Message with ID: '+messageID)
     apiUrl = "https://webexapis.com/v1/messages/"+messageID

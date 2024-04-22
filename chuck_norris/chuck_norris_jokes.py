@@ -31,5 +31,4 @@ def chuckjoke(**kwargs):
     return(response_json['value'])
 
 if __name__=='__main__':
-    #print(chuckjoke(name='John',category='dev'))
     print(chuckjoke())

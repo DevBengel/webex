@@ -1,7 +1,7 @@
 '''
 This is the server module. Within this module we check incoming post Messages
-based on their respective Paths. To tighten the Security, Webex needs to provide a
-Signature, based on a Webhook Secret. The incoming Information is parsed here and then passed
+based on their respective Paths. To tighten the security, Webex needs to provide a
+signature, based on a Webhook Secret. The incoming Information is parsed here and then passed
 to the Bot Controller
 '''
 from flask import Flask, request
@@ -12,6 +12,7 @@ import logging
 from chat_bot import controller
 from dotenv import load_dotenv
 import os
+
 
 dotenv_path = os.path.join(os.path.dirname(__file__), 'config/.env')
 load_dotenv(dotenv_path)
@@ -32,9 +33,10 @@ def handle_message():
         signature_from_webex=request.headers.get('X-Spark-Signature')
         hashed_by_module = hmac.new(secret_key.encode(), data_raw, hashlib.sha1).hexdigest()
                 
-        if signature_from_webex==hashed_by_module:
-            controller.message(data_json['data']['id'])
-            return 'Signature verified',200
+        if signature_from_webex==hashed_by_module: 
+            if data_json['data']['personEmail']!=str(os.getenv('BOTMAIL')):
+                controller.message(data_json['data']['id'])
+                return 'Signature verified',200
         else:
             return 'Bad signature',400
        
