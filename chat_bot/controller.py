@@ -50,9 +50,12 @@ def check_for_nickname(message):
 
 def handle_ping():
     print ("PONG")
+    return None
 
 def handle_joke(roomId):
     webexmessage.send_message_to_roomid(roomId,chuck_norris_jokes.chuckjoke())
+    return None
 
 def handle_card():
     print ("Adaptive")
+    return None

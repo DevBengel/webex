@@ -37,6 +37,8 @@ def handle_message():
             if data_json['data']['personEmail']!=str(os.getenv('BOTMAIL')):
                 controller.message(data_json['data']['id'],data_json['data']['roomId'])
                 return 'Signature verified',200
+            else:
+                return 'Understood but ignored- because its the bot speaking to himself',200
         else:
             return 'Bad signature',400
        
