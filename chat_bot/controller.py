@@ -5,13 +5,14 @@ from webex import webexmessage
 from chuck_norris import chuck_norris_jokes
 import os
 from dotenv import load_dotenv
+from chat_bot.bot_help import generate_help
 
 
 load_dotenv()
 
 
 
-buzzword_list=['joke','ping','card']
+buzzword_list=['joke','ping','card','help']
 
 def message(message_ID,roomId):
     '''
@@ -29,6 +30,8 @@ def message(message_ID,roomId):
             handle_ping()
         elif message == 'card':
             handle_card()
+        elif message == 'help':
+            handle_help(roomId)
 
     else:
         print (f"Normal Message {message}")
@@ -58,4 +61,8 @@ def handle_joke(roomId):
 
 def handle_card():
     print ("Adaptive")
+    return None
+
+def handle_help(roomId):
+    webexmessage.send_message_to_roomid_md(roomId,generate_help())
     return None

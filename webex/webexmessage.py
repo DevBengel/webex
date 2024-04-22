@@ -28,6 +28,7 @@ def send_message(email,text):
 
     return(response.text)
 
+
 def send_message_to_roomid(roomid,text):
 
     url = "https://webexapis.com/v1/messages"
@@ -44,6 +45,24 @@ def send_message_to_roomid(roomid,text):
     response = requests.request("POST", url, headers=headers, data=payload)
 
     return(response.text)
+
+def send_message_to_roomid_md(roomid,md):
+
+    url = "https://webexapis.com/v1/messages"
+
+    payload = json.dumps({
+    "roomId": roomid,
+    "markdown": md
+    })
+    headers = {
+    'Authorization': 'Bearer ' + str(os.getenv('ACCESSTOKEN')),
+    'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    return(response.text)
+
 
 def get_Message(messageID):
     print ('Searching for Message with ID: '+messageID)
