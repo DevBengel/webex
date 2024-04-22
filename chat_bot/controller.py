@@ -2,7 +2,6 @@
 This module is meant for bringing the samples to life. 
 '''
 from webex import webexmessage
-import plaintext
 
 def message(message_ID):
     '''
