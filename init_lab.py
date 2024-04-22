@@ -1,5 +1,6 @@
 '''
-This is the lab init module. 
+This is the lab init module. It is used to register all needed webhooks.
+We call it from the main module 
 '''
 import os
 import json

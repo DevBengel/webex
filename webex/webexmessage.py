@@ -33,7 +33,7 @@ def send_message_to_roomid(roomid,text):
     url = "https://webexapis.com/v1/messages"
 
     payload = json.dumps({
-    "RoomId": roomid,
+    "roomId": roomid,
     "text": text
     })
     headers = {
@@ -46,16 +46,17 @@ def send_message_to_roomid(roomid,text):
     return(response.text)
 
 def get_Message(messageID):
-    #print ('Searching for Message with ID: '+messageID)
+    print ('Searching for Message with ID: '+messageID)
     apiUrl = "https://webexapis.com/v1/messages/"+messageID
     access_token = str(os.getenv("ACCESSTOKEN"))
     httpHeaders = {"Content-type" : "application/json", "Authorization" : "Bearer " + access_token}
     body = {}
     response = requests.get(url=apiUrl, json=body, headers=httpHeaders)
     data=json.loads(response.text)
-    #print (data['personEmail'] + ' wrote: ' + data['text'])
-    
+        
     return(data['text'])
+
+
 
 if __name__=='__main__':
     logger.info(send_message(os.getenv('TARGETEMAIL'),'test'))

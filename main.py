@@ -1,5 +1,5 @@
 '''
-This is the server module. Within this module we check incoming post Messages
+This is the main server module. Within this module we check incoming post Messages
 based on their respective Paths. To tighten the security, Webex needs to provide a
 signature, based on a Webhook Secret. The incoming Information is parsed here and then passed
 to the Bot Controller
@@ -12,7 +12,7 @@ import logging
 from chat_bot import controller
 from dotenv import load_dotenv
 import os
-
+import init_lab
 
 dotenv_path = os.path.join(os.path.dirname(__file__), 'config/.env')
 load_dotenv(dotenv_path)
@@ -35,7 +35,7 @@ def handle_message():
                 
         if signature_from_webex==hashed_by_module: 
             if data_json['data']['personEmail']!=str(os.getenv('BOTMAIL')):
-                controller.message(data_json['data']['id'])
+                controller.message(data_json['data']['id'],data_json['data']['roomId'])
                 return 'Signature verified',200
         else:
             return 'Bad signature',400
@@ -72,4 +72,5 @@ def handle_event():
             return 'Bad signature',400
 
 if __name__ == '__main__':
+    init_lab.main()
     app.run(debug=True, use_reloader=True)
