@@ -1,6 +1,11 @@
-ACCESSTOKEN=''
-TARGETEMAIL=''
-NGROKURL=''
-HOOKSECRET=''
-BOTMAIL=''
-NICKNAME=''
+#The accesstoken has to be aquired by accessing developer.webex.com
+ACCESSTOKEN='***Your_Data***'
+#A potential target email address for some nice Chuck N Jokes
+TARGETEMAIL='***Your_Data***'
+#get an account at ngrok.com and put the authtoken here
+NGROK_AUTHTOKEN='***Your_Data***'
+#any secret willd do ;). Its passed to the webhook, and verified by the script.
+HOOKSECRET='***Your_Data***'
+#The following is being set by starting the main module. Theres nothing to do for you here:
+BOTMAIL='***Your_Data***'
+NICKNAME='***Your_Data***'

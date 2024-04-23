@@ -29,7 +29,7 @@ def message(message_ID,roomId):
         elif message == 'ping':
             handle_ping()
         elif message == 'card':
-            handle_card()
+            handle_card(roomId)
         elif message == 'help':
             handle_help(roomId)
 
@@ -59,8 +59,8 @@ def handle_joke(roomId):
     webexmessage.send_message_to_roomid(roomId,chuck_norris_jokes.chuckjoke())
     return None
 
-def handle_card():
-    print ("Adaptive")
+def handle_card(roomId):
+    webexmessage.send_message_to_roomid(roomId,'Not implemented yet- feel free :)')
     return None
 
 def handle_help(roomId):
