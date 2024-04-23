@@ -6,11 +6,10 @@ from chuck_norris import chuck_norris_jokes
 import os
 from dotenv import load_dotenv
 from chat_bot.bot_help import generate_help
+import json
 
 
 load_dotenv()
-
-
 
 buzzword_list=['joke','ping','card','help']
 
@@ -27,7 +26,7 @@ def message(message_ID,roomId):
         if message == 'joke':
             handle_joke(roomId)
         elif message == 'ping':
-            handle_ping()
+            handle_ping(roomId)
         elif message == 'card':
             handle_card(roomId)
         elif message == 'help':
@@ -51,8 +50,8 @@ def check_for_nickname(message):
     return (result_string)
 
 
-def handle_ping():
-    print ("PONG")
+def handle_ping(roomId):
+    webexmessage.send_message_to_roomid(roomId,'pong')
     return None
 
 def handle_joke(roomId):
@@ -60,7 +59,12 @@ def handle_joke(roomId):
     return None
 
 def handle_card(roomId):
-    webexmessage.send_message_to_roomid(roomId,'Not implemented yet- feel free :)')
+    file_path = os.path.join('chat_bot', 'adaptive_card.json')
+
+    with open(file_path, 'r') as file:
+        attachment_data = json.load(file)
+        webexmessage.send_message_to_roomid_md(roomId,'Here is a sample adaptive card',attachment_data)
+
     return None
 
 def handle_help(roomId):

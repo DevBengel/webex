@@ -46,7 +46,7 @@ def send_message_to_roomid(roomid,text):
 
     return(response.text)
 
-def send_message_to_roomid_md(roomid,md):
+def send_message_to_roomid_md(roomid,md,attachments=None):
 
     url = "https://webexapis.com/v1/messages"
 
@@ -54,6 +54,16 @@ def send_message_to_roomid_md(roomid,md):
     "roomId": roomid,
     "markdown": md
     })
+
+    if attachments!=None:
+
+        # Insert a new key into payload_data with the value from attachment_data
+        payload_data=json.loads(payload)
+        payload_data["attachments"] = [attachments]
+
+        # Convert payload_data to JSON string
+        payload = json.dumps(payload_data)
+
     headers = {
     'Authorization': 'Bearer ' + str(os.getenv('ACCESSTOKEN')),
     'Content-Type': 'application/json'
@@ -79,4 +89,4 @@ def get_Message(messageID):
 
 if __name__=='__main__':
     logger.info(send_message(os.getenv('TARGETEMAIL'),'test'))
-
+    
