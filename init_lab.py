@@ -25,12 +25,16 @@ def delete_old_hooks():
             webhooks.delete_webhook(webhook['id'])
 
 def generate_fresh_hooks(tunnel_url):
-    #ngrok_url = os.getenv('NGROKURL')
     hook_secret = os.getenv('HOOKSECRET')
     if tunnel_url and hook_secret:
+        #create a new webhook for messages
         print(webhooks.create_webhook('DelMe', f'{tunnel_url}/messages', 'messages', 'created', hook_secret))
+        #create a new webhook for attachments - this is needed for adaptive cards
+        print(webhooks.create_webhook('DelMe', f'{tunnel_url}/attachment','attachmentActions','created',hook_secret))
     else:
         print("NGROKURL or HOOKSECRET environment variable not found. Unable to generate new hooks.")
+
+
 
 def set_bot_mail_variable():
     env_file_path = load_environment()

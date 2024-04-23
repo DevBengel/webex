@@ -9,7 +9,7 @@ import hashlib
 import hmac
 import json
 import logging
-from chat_bot import controller
+from chat_bot import message_controller,attachment_controller
 from dotenv import load_dotenv
 import os
 import init_lab
@@ -44,7 +44,7 @@ def handle_message():
                 
         if signature_from_webex==hashed_by_module: 
             if data_json['data']['personEmail']!=str(os.getenv('BOTMAIL')):
-                controller.message(data_json['data']['id'],data_json['data']['roomId'])
+                message_controller.message(data_json['data']['id'],data_json['data']['roomId'])
                 return 'Signature verified',200
             else:
                 print ("Found a message from myself...")
@@ -64,6 +64,9 @@ def handle_attachment():
         hashed_by_module = hmac.new(secret_key.encode(), data_raw, hashlib.sha1).hexdigest()
                 
         if signature_from_webex==hashed_by_module:
+            print('someone pressed a button')
+            data_json=json.loads(data_raw)
+            attachment_controller.handle_attachment(data_json['data']['id'])
             return 'Signature verified',200
         else:
             return 'Bad signature',400

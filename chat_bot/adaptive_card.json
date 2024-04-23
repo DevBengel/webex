@@ -1,98 +1,107 @@
 {
     "contentType": "application/vnd.microsoft.card.adaptive",
     "content": {
-      "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-      "type": "AdaptiveCard",
-      "version": "1.0",
-      "body": [
-        {
-          "type": "ColumnSet",
-          "columns": [
+        "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+        "type": "AdaptiveCard",
+        "version": "1.3",
+        "body": [
             {
-              "type": "Column",
-              "width": 2,
-              "items": [
-                {
-                  "type": "TextBlock",
-                  "text": "Tell us about yourself",
-                  "weight": "bolder",
-                  "size": "medium"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "We just need a few more details to get you booked for the trip of a lifetime!",
-                  "isSubtle": true,
-                  "wrap": true
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "Don't worry, we'll never share or sell your information.",
-                  "isSubtle": true,
-                  "wrap": true,
-                  "size": "small"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "Your name",
-                  "wrap": true
-                },
-                {
-                  "type": "Input.Text",
-                  "id": "Name",
-                  "placeholder": "John Andersen"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "Your website",
-                  "wrap": true
-                },
-                {
-                  "type": "Input.Text",
-                  "id" : "Url",
-                  "placeholder": "https://example.com"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "Your email",
-                  "wrap": true
-                },
-                {
-                  "type": "Input.Text",
-                  "id": "Email",
-                  "placeholder": "john.andersen@example.com",
-                  "style": "email"
-                },
-                {
-                  "type": "TextBlock",
-                  "text": "Phone Number"
-                },
-                {
-                  "type": "Input.Text",
-                  "id": "Tel",
-                  "placeholder": "+1 408 526 7209",
-                  "style": "tel"
-                }
-              ]
-            },
-            {
-              "type": "Column",
-              "width": 1,
-              "items": [
-                {
-                  "type": "Image",
-                  "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Diver_Silhouette%2C_Great_Barrier_Reef.jpg",
-                  "size": "auto"
-                }
-              ]
+                "type": "ColumnSet",
+                "columns": [
+                    {
+                        "type": "Column",
+                        "width": 2,
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "text": "Sign up for excellent classes",
+                                "weight": "Bolder",
+                                "size": "Medium"
+                            },
+                            {
+                                "type": "TextBlock",
+                                "text": "Hybrid learning or in person.",
+                                "isSubtle": true,
+                                "wrap": true
+                            },
+                            {
+                                "type": "TextBlock",
+                                "text": "Don't worry, we'll never share or sell your information.",
+                                "isSubtle": true,
+                                "wrap": true,
+                                "size": "Small"
+                            },
+                            {
+                                "type": "TextBlock",
+                                "text": "Your name",
+                                "wrap": true
+                            },
+                            {
+                                "type": "Input.Text",
+                                "id": "myName",
+                                "placeholder": "First and last name"
+                            },
+                            {
+                                "type": "TextBlock",
+                                "text": "Your email",
+                                "wrap": true
+                            },
+                            {
+                                "type": "Input.Text",
+                                "id": "myEmail",
+                                "placeholder": "youremail@example.com",
+                                "style": "Email"
+                            },
+                            {
+                                "type": "TextBlock",
+                                "text": "Phone Number"
+                            },
+                            {
+                                "type": "Input.Text",
+                                "id": "myTel",
+                                "placeholder": "+49 6074 XXXXXXXXX",
+                                "style": "Tel"
+                            },
+                            {
+                                "type": "Input.ChoiceSet",
+                                "id": "myInterest",
+                                "choices": [
+                                    {
+                                        "title": "Collaboration",
+                                        "value": "Collaboration"
+                                    },
+                                    {
+                                        "title": "Warp Drives",
+                                        "value": "Warp Drives"
+                                    },
+                                    {
+                                        "title": "Networking",
+                                        "value": "Networking"
+                                    }
+                                ],
+                                "placeholder": "Everything",
+                                "label": "Area of Interest"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "Column",
+                        "width": 1,
+                        "items": [
+                            {
+                                "type": "Image",
+                                "url": "https://www.experteach.eu/de/assets/templates/experteach/images/v2/ET-Logo-2023.png"
+                            }
+                        ]
+                    }
+                ]
             }
-          ]
-        }
-      ],
-      "actions": [
-        {
-          "type": "Action.Submit",
-          "title": "Submit"
-        }
-      ]
+        ],
+        "actions": [
+            {
+                "type": "Action.Submit",
+                "title": "Submit"
+            }
+        ]
     }
-  }
+}
