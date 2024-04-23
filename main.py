@@ -85,4 +85,4 @@ def handle_event():
 
 if __name__ == '__main__':
     init_lab.init()
-    app.run(debug=True,use_reloader=False)
+    app.run(use_reloader=False)
