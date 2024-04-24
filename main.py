@@ -4,23 +4,24 @@ based on their respective Paths. To tighten the security, Webex needs to provide
 signature, based on a Webhook Secret. The incoming Information is parsed here and then passed
 to the Bot Controller
 '''
-from flask import Flask, request
+import os
 import hashlib
 import hmac
 import json
 import logging
-from chat_bot import message_controller,attachment_controller
-from dotenv import load_dotenv
-import os
-import init_lab
 import atexit
+from dotenv import load_dotenv
+from flask import Flask, request
+from chat_bot import message_controller,attachment_controller
+import init_lab
+
 
 #Preparing the environment variables
 dotenv_path = os.path.join(os.path.dirname(__file__), 'config/.env')
 load_dotenv(dotenv_path)
 
 app = Flask(__name__)
-secret_key=str(os.getenv('HOOKSECRET'))
+SECRET_KEY=str(os.getenv('HOOKSECRET'))
 
 # Configure the logging
 logging.basicConfig(level=logging.INFO)
@@ -40,7 +41,7 @@ def handle_message():
         data_raw = request.data
         data_json=json.loads(data_raw)
         signature_from_webex=request.headers.get('X-Spark-Signature')
-        hashed_by_module = hmac.new(secret_key.encode(), data_raw, hashlib.sha1).hexdigest()
+        hashed_by_module = hmac.new(SECRET_KEY.encode(), data_raw, hashlib.sha1).hexdigest()
                 
         if signature_from_webex==hashed_by_module: 
             if data_json['data']['personEmail']!=str(os.getenv('BOTMAIL')):
@@ -61,7 +62,7 @@ def handle_attachment():
     if request.method == 'POST':
         data_raw = request.data
         signature_from_webex=request.headers.get('X-Spark-Signature')
-        hashed_by_module = hmac.new(secret_key.encode(), data_raw, hashlib.sha1).hexdigest()
+        hashed_by_module = hmac.new(SECRET_KEY.encode(), data_raw, hashlib.sha1).hexdigest()
                 
         if signature_from_webex==hashed_by_module:
             print('someone pressed a button')
@@ -79,7 +80,7 @@ def handle_event():
     if request.method == 'POST':
         data_raw = request.data
         signature_from_webex=request.headers.get('X-Spark-Signature')
-        hashed_by_module = hmac.new(secret_key.encode(), data_raw, hashlib.sha1).hexdigest()
+        hashed_by_module = hmac.new(SECRET_KEY.encode(), data_raw, hashlib.sha1).hexdigest()
                 
         if signature_from_webex==hashed_by_module:
             return 'Signature verified',200
