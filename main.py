@@ -28,8 +28,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def exit_handler():
+    '''
+    If the module is exited correctly, we delete all webhooks
+    and close the ngrok tunnel
+    '''
     print("Exiting module. Clean-up code executed.")
-    init_lab.de_init() 
+    init_lab.de_init()
 
 # Register the exit_handler function to be called when the module exits
 atexit.register(exit_handler)
@@ -37,12 +41,17 @@ atexit.register(exit_handler)
 # Starting the server
 @app.route('/messages', methods=['POST'])
 def handle_message():
+    '''
+    We are waiting for a POST Message, that is sent to us.
+    Then we are checking if it was our own webhook, trying to reach us by
+    checking for the secret.
+    '''
     if request.method == 'POST':
         data_raw = request.data
         data_json=json.loads(data_raw)
         signature_from_webex=request.headers.get('X-Spark-Signature')
         hashed_by_module = hmac.new(SECRET_KEY.encode(), data_raw, hashlib.sha1).hexdigest()
-                
+
         if signature_from_webex==hashed_by_module: 
             if data_json['data']['personEmail']!=str(os.getenv('BOTMAIL')):
                 message_controller.message(data_json['data']['id'],data_json['data']['roomId'])
@@ -52,7 +61,7 @@ def handle_message():
                 return 'Understood but ignored- because its the bot speaking to himself',200
         else:
             return 'Bad signature',400
-       
+
 
 @app.route('/attachment', methods=['POST'])
 def handle_attachment():
@@ -81,7 +90,7 @@ def handle_event():
         data_raw = request.data
         signature_from_webex=request.headers.get('X-Spark-Signature')
         hashed_by_module = hmac.new(SECRET_KEY.encode(), data_raw, hashlib.sha1).hexdigest()
-                
+           
         if signature_from_webex==hashed_by_module:
             return 'Signature verified',200
         else:

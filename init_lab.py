@@ -84,4 +84,6 @@ def de_init():
 
 
 if __name__ == "__main__":
+    #just for manual testing
     init()
+    de_init()
