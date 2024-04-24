@@ -6,6 +6,12 @@ TARGETEMAIL='***Your_Data***'
 NGROK_AUTHTOKEN='***Your_Data***'
 #any secret willd do ;)
 HOOKSECRET='***Your_Data***'
-#The following is being set by init:
+#If instructed to do so fill in the following service app informations
+#This is solely done for service apps- if its a topic in our class
+REFRESH_TOKEN='***Your_Data***'
+ACCESS_TOKEN='***Your_Data***'
+CLIENT_ID='***Your_Data***'
+CLIENT_SECRET='***Your_Data***'
+#This will be adjusted by the init module. You dont have to do something below.
 BOTMAIL='***Your_Data***'
 NICKNAME='***Your_Data***'
