@@ -26,7 +26,8 @@ def renew_access_token():
     print('Access Token renewed')
     set_key(dotenv_path=dotenv_path, key_to_set="ACCESS_TOKEN", value_to_set=response_json['access_token'])
     set_key(dotenv_path=dotenv_path, key_to_set="REFRESH_TOKEN", value_to_set=response_json['refresh_token'])
-    
+    set_key(dotenv_path=dotenv_path, key_to_set="ACCESS_TOKEN_EXPIRY", value_to_set=str(response_json['expires_in']))
+
     return response.text
 
 
