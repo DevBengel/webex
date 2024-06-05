@@ -1,3 +1,7 @@
+'''
+This is just a demomodule which sends some jokes to a target webex account
+'''
+
 import chuck_norris.chuck_norris_jokes as chuck_norris_jokes
 import webex.webexmessage as webexmessage
 import os

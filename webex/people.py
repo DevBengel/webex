@@ -1,3 +1,8 @@
+'''
+In this module i provide some functions for the "people" endpoint.
+I need it to initialize the lab correctly
+'''
+
 from dotenv import load_dotenv
 import requests
 import os
