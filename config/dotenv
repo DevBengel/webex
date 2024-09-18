@@ -4,7 +4,7 @@ ACCESSTOKEN='***Your_Data***'
 TARGETEMAIL='***Your_Data***'
 #get an account at ngrok.com
 NGROK_AUTHTOKEN='***Your_Data***'
-#any secret willd do ;)
+#any secret will do ;)
 HOOKSECRET='***Your_Data***'
 #The following is being set by init:
 BOTMAIL='***Your_Data***'
