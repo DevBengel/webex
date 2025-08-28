@@ -58,14 +58,26 @@ def handle_joke(roomId):
     webexmessage.send_message_to_roomid(roomId,chuck_norris_jokes.chuckjoke())
     return None
 
+import os
+import json
+
 def handle_card(roomId):
-    file_path = os.path.join('chat_bot', 'adaptive_card.json')
+    # Ordner bestimmen, in dem dieses Modul liegt
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Datei-Pfad relativ zum Modul
+    file_path = os.path.join(base_dir, 'adaptive_card.json')
 
     with open(file_path, 'r') as file:
         attachment_data = json.load(file)
-        webexmessage.send_message_to_roomid_md(roomId,'Here is a sample adaptive card',attachment_data)
+        webexmessage.send_message_to_roomid_md(
+            roomId,
+            'Here is a sample adaptive card',
+            attachment_data
+        )
 
     return None
+
 
 def handle_help(roomId):
     webexmessage.send_message_to_roomid_md(roomId,generate_help())
