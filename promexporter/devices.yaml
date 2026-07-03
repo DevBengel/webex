@@ -1,0 +1,24 @@
+devices:
+  - device_id: "Y2lzY29-001"
+    device: "RoomKit Mini Schulung 1"
+    workspace: "Raum 1"
+    online: 1
+    people_count: 4
+    microphone_muted: 0
+    call_connected: 1
+    standby_state: 0
+    temperature_alarm: 0
+    packet_loss: 0.3
+    jitter_ms: 12
+
+  - device_id: "Y2lzY29-002"
+    device: "RoomKit Mini Schulung 2"
+    workspace: "Raum 2"
+    online: 0
+    people_count: 0
+    microphone_muted: 0
+    call_connected: 0
+    standby_state: 1
+    temperature_alarm: 0
+    packet_loss: 0
+    jitter_ms: 0
